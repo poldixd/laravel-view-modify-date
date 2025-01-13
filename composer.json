@@ -1,0 +1,49 @@
+{
+  "name": "poldixd/view-modify-date",
+  "type": "library",
+  "license": "MIT",
+  "homepage": "https://github.com/poldixd/laravel-view-modify-date",
+  "authors": [
+    {
+      "name": "Nils Poltmann",
+      "email": "dev@nils.li"
+    }
+  ],
+  "require": {
+    "php": "^8.2",
+    "illuminate/support": "^10.0|^11.0"
+  },
+  "require-dev": {
+    "orchestra/testbench": "^8.0|^9.0",
+    "pestphp/pest": "^3.0",
+    "pestphp/pest-plugin-laravel": "^3.0",
+    "laravel/pint": "^1.19"
+  },
+  "autoload": {
+    "psr-4": {
+      "poldixd\\ViewModifyDate\\": "src/"
+    }
+  },
+  "scripts": {
+    "test": "vendor/bin/pest"
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "poldixd\\ViewModifyDate\\Tests\\": "tests/"
+    }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "poldixd\\ViewModifyDate\\ViewModifyDateServiceProvider"
+      ]
+    }
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "config": {
+    "allow-plugins": {
+      "pestphp/pest-plugin": true
+    }
+  }
+}
