@@ -24,3 +24,10 @@ it('can get the file modify time', function () {
 it('returns an exception if file not found', function () {
     expect(ViewModifyDate::get('test-folder.not-found'));
 })->throws(InvalidArgumentException::class);
+
+it('can get the file modify time for a livewire component view', function () {
+    touch(__DIR__.'/resources/views/pages/⚡calendar/index.blade.php', strtotime('2025-01-13 10:45:00'));
+
+    expect(ViewModifyDate::get('pages.⚡calendar.index')->toDateTimeString())
+        ->toBe('2025-01-13 10:45:00');
+});
