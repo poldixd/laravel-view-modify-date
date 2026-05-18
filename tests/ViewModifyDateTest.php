@@ -2,10 +2,10 @@
 
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\File;
-use InvalidArgumentException;
 use poldixd\ViewModifyDate\ViewModifyDate;
 
 beforeEach(function (): void {
+    File::deleteDirectory(__DIR__.'/resources/views/pages');
     File::deleteDirectory(__DIR__.'/resources/views/test-folder');
     File::makeDirectory(__DIR__.'/resources/views/test-folder');
 });
@@ -26,7 +26,11 @@ it('returns an exception if file not found', function () {
 })->throws(InvalidArgumentException::class);
 
 it('can get the file modify time for a livewire component view', function () {
+    mkdir(__DIR__.'/resources/views/pages/⚡calendar/', recursive: true);
+
     touch(__DIR__.'/resources/views/pages/⚡calendar/index.blade.php', strtotime('2025-01-13 10:45:00'));
+
+    expect(file_exists(__DIR__.'/resources/views/pages/⚡calendar/index.blade.php'))->toBeTrue();
 
     expect(ViewModifyDate::get('pages.⚡calendar.index')->toDateTimeString())
         ->toBe('2025-01-13 10:45:00');
